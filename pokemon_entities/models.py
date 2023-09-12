@@ -1,3 +1,5 @@
-from django.db import models  # noqa F401
+from django.db import models
 
-# your models here
+class Post(models.Model):
+    name = models.CharField(max_length=20, verbose_name="Имя покемона")
+    picture = models.ImageField(verbose_name="Изображение покемона")
