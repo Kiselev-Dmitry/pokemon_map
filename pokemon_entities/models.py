@@ -8,6 +8,14 @@ class Pokemon(models.Model):
     name_en = models.CharField(max_length=20, blank=True)
     name_jp = models.CharField(max_length=20, blank=True)
 
+    prev_evolution = models.ForeignKey(
+        "self",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="next_evolutions",
+    )
+
     def __str__(self):
         return f'{self.name}'
 
