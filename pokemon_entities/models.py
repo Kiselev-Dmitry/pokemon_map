@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Pokemon(models.Model):
-    name = models.CharField(max_length=20, verbose_name="Имя покемона", null=True)
-    picture = models.ImageField(verbose_name="Изображение покемона", null=True)
+    name = models.CharField(max_length=20, verbose_name="Имя покемона")
+    picture = models.ImageField(verbose_name="Изображение покемона")
     description = models.TextField(blank=True, verbose_name="Описание покемона")
     name_en = models.CharField(
         max_length=20,
