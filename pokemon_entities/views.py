@@ -79,6 +79,9 @@ def show_pokemon(request, pokemon_id):
     pokemon_params = {
         "pokemon_id": pokemon.id,
         "title_ru": pokemon.name,
+        "title_en": pokemon.name_en,
+        "title_jp": pokemon.name_jp,
+        "description": pokemon.description,
         "img_url": request.build_absolute_uri(pokemon.picture.url)
     }
 
