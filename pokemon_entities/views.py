@@ -1,7 +1,7 @@
 import folium
 from django.utils.timezone import localtime
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from pokemon_entities.models import Pokemon, PokemonEntity
 
 
@@ -40,8 +40,7 @@ def show_all_pokemons(request):
             folium_map,
             pokemon_entity.lat,
             pokemon_entity.lon,
-            request.build_absolute_uri(pokemon_entity.pokemon.picture.url),
-#            request.build_absolute_uri(f"media/{pokemon_entity.pokemon.picture}")
+            request.build_absolute_uri(pokemon_entity.pokemon.picture.url)
         )
 
     pokemons_on_page = []
@@ -50,8 +49,7 @@ def show_all_pokemons(request):
         pokemons_on_page.append({
             'pokemon_id': pokemon.id,
             'img_url': request.build_absolute_uri(pokemon.picture.url),
-#            'img_url': request.build_absolute_uri(f"media/{pokemon.picture}"),
-            'title_ru': pokemon.name,
+            'title_ru': pokemon.name
         })
 
     return render(request, 'mainpage.html', context={
@@ -61,7 +59,7 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    pokemon = Pokemon.objects.get(id=pokemon_id)
+    pokemon = get_object_or_404(Pokemon, id=pokemon_id)
     current_time = localtime()
     pokemon_entities = pokemon.entities.filter(
         disappeared_at__gt=current_time,
