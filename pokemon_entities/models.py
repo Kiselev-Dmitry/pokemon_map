@@ -16,7 +16,7 @@ class Pokemon(models.Model):
         verbose_name = "Имя покемона на английском языке"
     )
 
-    prev_evolution = models.ForeignKey(
+    previous_evolution = models.ForeignKey(
         "self",
         null=True,
         blank=True,
