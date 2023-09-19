@@ -72,3 +72,6 @@ class PokemonEntity(models.Model):
         blank=True,
         verbose_name="Выносливость покемона"
     )
+
+    def __str__(self):
+        return f"{self.pokemon}-{self.id}"
